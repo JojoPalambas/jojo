@@ -8,6 +8,8 @@
 	status = auto
 [commit]
 	verbose = true
+[log]
+    decorate = auto
 [pull]
 	rebase = true
 [branch]

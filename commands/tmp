@@ -1,0 +1,9 @@
+wiki theory bittorrent specification
+
+- prendre l'url
+- rajouter à sa suite les arguments trouvés avec le parsing (voir les arguments
+  du torrent dans wiki theory)
+- échapper le new url avec curl_easy_escape
+- set le write_callback pour mettre les données pointées par ptr et de taille
+  arg * arg à la fin du user_data (realloc needed)
+- perform

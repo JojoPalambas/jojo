@@ -63,11 +63,15 @@ function check_unwanted
 function check_80cols
 {
     for file in $*; do
+        if [ $file = "output" ]; then
+            continue
+        fi
         if [ -d $file ]; then
             check_80cols $file/*
         else
-            grep -E .{80}.+ $file > output
-            if [ -z $(cat output) ]; then
+            IFS=$'\n'
+            grep -E -n .{80}.+ $file > output
+            if [ $(cat output | wc -w) = 0 ]; then
                 echo -e "- ${green}No line exceeding 80 cols in $file${white}"
             else
                 echo -e "- ${red}80+ cols in $file:${white}"
@@ -75,13 +79,33 @@ function check_80cols
                     echo -e "--> ${red}$line${white}"
                 done
             fi
+            IFS=$' \t\n'
         fi
     done
 }
 
 function check_trailing_whitespaces
 {
-    echo -e "${red}Not implemented ${green}yet${white}"
+    for file in $*; do
+        if [ $file = "output" ]; then
+            continue
+        fi
+        if [ -d $file ]; then
+            check_trailing_whitespaces $file/*
+        else
+            IFS=$'\n'
+            grep -E -n "[[:space:]]$" $file > output
+            if [ $(cat output | wc -w) = 0 ]; then
+                echo -e "- ${green}No trailing whitespace in $file${white}"
+            else
+                echo -e "- ${red}Trailing whitespace or tab in $file:${white}"
+                for line in $(cat output); do
+                    echo -e "--> ${red}$line${white}"
+                done
+            fi
+            IFS=$' \t\n'
+        fi
+    done
 }
 
 function check_tabs
@@ -98,14 +122,13 @@ echo
 echo "----- Beginning of the file tree check -----"
 echo
 
-# tree
 echo "--- Checking submission tree structure"
 check_rootfiles 6
 check_exist AUTHORS README TODO tests src Makefile
 echo
 
 echo "--- Checking git sanity"
-check_log 1
+check_log 2
 echo
 
 echo "--- Checking unwanted files"
@@ -114,9 +137,8 @@ echo
 
 echo "--- Checking coding style"
 check_80cols *
-check_trailing_whitespaces
-check_tabs
-check_indent
+check_trailing_whitespaces *
+check_indent *
 echo
 
 echo "-------- End of the file tree check --------"
