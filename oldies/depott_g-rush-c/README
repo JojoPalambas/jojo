@@ -1,0 +1,40 @@
+**************README: Hardcore Bisounours**************
+
+Hardcore Bisounours is a nervous survival (a little bit bit them'up) game.
+All you have to do is to navigate between two worlds: A light one with birds,
+unicorns and a lot of more lovely things.
+On the other hand, the second world is much darker, with monsters that only
+want one thing: Eat you.
+Get the sword and slain all the monsters to win.
+
+First, compile it:
+  Be on the project root
+  `make`
+  `./hardcore_bisounours`
+
+Playing keys:
+  Arrow moving keys
+    -UpArrow
+    -DownArrow
+    -LeftArrow
+    -RightArrow
+    -Space: attack
+    -Escape: quit during the game using ESC key
+
+Menu:
+  Title menu: Quit or play
+  Victory menu: Press space to menu
+  Game Over menu: Quit or replay
+
+HOW TO WIN?!
+  -MORE POWER: Get to the sword to gain a tremendous power (remember: "With
+  great Power comes great responsibility)
+  -Speed is key: get the sword as fast as you can so the least monsters spawn
+  before you get armed
+  -Chased become chaser: Destroy them all.
+
+
+This game was designed and realized by
+Gabriel DEPOTTE,
+Xavier FICHTER and
+TRINH Vincent

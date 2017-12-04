@@ -1,0 +1,9 @@
+      * First of all, you need to create the library by typing "make".
+      * Then, you have the choice:
+          - You can execute the testsuite by typing "make test" or
+            "./tests/test.sh";
+          - Or you can try the efficiency of malloc, calloc, realloc and free by
+            typing "LD_PRELOAD=./libmalloc.so [command]", replacing [command] by
+            the command line of your choice.
+      * Last of all, you should type "make clean" in order to remove all the .o
+        and .so undesired files from the directory.

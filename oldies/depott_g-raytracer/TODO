@@ -1,0 +1,8 @@
+DONE:
+    * Parsing a file to store its data in a convenient structure
+    * Calculating an image pixel by pixel and store it
+    * Saving the image in a .ppm file
+
+TODO:
+    * Debug the image computation for triangle.svati
+    * Start stage 1

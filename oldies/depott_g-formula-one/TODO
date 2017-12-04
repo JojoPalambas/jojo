@@ -1,0 +1,14 @@
+* Code an advanced braking system to allow the car to go faster
+
+* Re-enable diagonals for Dijkstra's and avoid collisions
+    in this kind of turns:  0000000000
+                            0000000011
+                            0000000110
+                            0000001100
+                            0000011000
+                            0000110000
+                            0001100000
+                            0011000000
+
+* Simplify the Dijkstra's path from a path of adjacent cells to a path of
+    sparated key nodes.

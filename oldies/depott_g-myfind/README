@@ -1,0 +1,111 @@
+        MISCELLANEOUS
+
+  * test.sh: my testsuite program creates five short temporary files
+    to store the stdout and stderr outputs of find and ./myfind, and
+    the differences between them (i.e. the stdout and stderr of the
+    command diff). If the file containing the differences is empty, the
+    testsuite prints [OK] for this test, else it prints [KO].
+
+  * Error handling: when an action can't be done, for example when the user
+    tries to open an unexisting file, the program will print on stderr
+    a message like "myfind: cannot do <action>: <error>", with:
+    - <action>: the action that the program tried to do but failed
+    - <error>: a short explanation about why the action can't be done
+    Example: myfind: Cannot open totor: No such file or directory
+
+  * Documentation: The documentation is being written.
+    It will use Doxygen to be generated in order to have a clean and
+    standard display.
+
+        STRUCTURES USED
+
+  * struct accumulator: I have created a structure called accumulator.
+    The purpose of this structure is to store a path and its length
+    in order to be able to build a path directory name by direcotry name
+    in an efficient and convenient way.
+
+  * struct command: I have created a structure called command. This structure
+    is made to contain all the informations about the input command lint
+    (the activated options, the location in the command line of the files
+    to process, and the expressions). It is given to a lot of different
+    functions, those which need to get anything from the command line
+    or some variables describing it. Lastly, this structure helps for
+    a better optimizations because it makes researches and traversals faster.
+
+  * struct expr: this structure is an AST-like structure made to store the
+    expressions of the command line as a tree. Each node of the tree
+    has a type and describes a word from a command line.
+    For example, if the type of a node is E_AND, it represents the word "-a"
+    between its left and right children, if the type is E_NAME, it represents
+    the action "-name" applied to the right child and if the type is E_FILE,
+    it represents the name of a file, like "file.txt".
+
+        FUNCTIONNING
+
+  * Main: The command line is parsed. Then, if the command line is empty,
+    findall is called with an empty filename, else it is called for every
+    file name given in the command line.
+
+  * Parsing: parsing is separated into 3 parts:
+    - Parsing options: the value of the last option given is stored in the
+      command structure.
+    - Parsing file names: nothing is done yet with the file names, but the
+      command structure will store where the group of file names begins
+      in the command line and where it ends.
+    - Parsing expression: parsing expression will use an AST structure: every
+      single word from the expressions will be stored in a node, and the
+      nodes organized in a way to make their reading accurate and efficient.
+      My AST is not a binary tree but a ternary tree: each node has a left
+      child and a right child, which are the arguments of the expression,
+      and a "next" child, which is the next expression to read if the current
+      expression returns 1.
+      For example, for the expression "-name f* -o -type d -d", the AST
+      will have "-o" as a root ; its left child will be "-name" (which will
+      have "f*" as a right child), its right child will be "-type" (which
+      will have "d" as a right child) and its next child will be "-d"
+      (which will obviously have no child).
+
+  * Findall: findall is the most important function of my project because
+    it is the one called with every file name from the command line.
+    It treats the file in 5 steps:
+    - If the file name is empty, it is replaced by the name ".".
+    - If the file is a link and the -P option is inable, the name of the file
+      is printed and the function returns.
+    - If the file name does not match anything, an error message is printed
+      and the function returns.
+    - If the file name matches a non-directory file, the file name is printed
+      and the function returns.
+    - The expression AST is applied to the file, the file name is printed
+      if needed and the recursive findall is called with the file name.
+
+  * Recursive findall: the recursive findall function opens the directory and
+    processes every file contained in the directory which name is not
+    "." or ".." (to avoid infinite recursive calls).
+
+  * File processing: a file is processed in 2 steps:
+    - The expressions are applied to the file, and the file name is printed
+      if needed (before or after the next step).
+    - If the file is a directory or a link (with the -L option activated),
+      the recursive findall is called on the file.
+
+  * Applying expressions to a file: when an expression AST should be applied
+    to a file, it follows the following rules:
+    - If the current expression is NULL, it returns 1.
+    - If the current expression is a file name, it returns 1.
+    - If the current expression is "-d", the program remembers that this time
+      the -d option is activated and the function returns the return value
+      of the current expression's next child.
+    - If the current expression is "-name", it returns the return value of its
+      next child if the name of the current file is the same as the name put
+      in the expression on the right (which should be a file name). Else, it
+      returns 0.
+    - If the current expression is "-type", it returns the return value of
+      its next child if the type of the current file is the same as the name
+      put in the expression on the right (which should be considered to be a
+      file name by the program). Else, it returns 0.
+    - If the current expression is "-o", it returns (the return value of its
+      left child OR the return value of its right child) AND the return value
+      of its next child (OR and AND being the logical operators).
+    - If the current expression is "-a", it returns the return value of its
+      left child AND the return value of its right child AND the return value
+      of its next child (AND being the logical operator).

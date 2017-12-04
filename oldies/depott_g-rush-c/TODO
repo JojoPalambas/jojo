@@ -1,0 +1,28 @@
+Already implemented: +
+Not implemented yet: -
+Being implemented: ~
+
++ Opening a window
++ Drawning a background
++ Drawing a texture on the background
++ Getting keyboard inputs
++ Moving a character
++ Making monsters spawn
++ Making monsters follow the player
++ Killing the player on collision with monsters
++ Disabling monsters superposition
++ Implementing a main manu with play and quit options
++ Implementing a game over menu with retry and quit options
++ Implementing a main menu allowing to choose maps
++ Parsing a map file
++ Killing the player on collision with fire
++ Fix the fire hitbox
++ Making pentagrams spawn monsters
++ Add music
++ Swap between worlds
++ Implementing a sword
++ Killing creatures
++ Counting score
++ Getting the sword
++ Sword cooldown
++ Making the monsters turn around
