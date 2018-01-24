@@ -56,18 +56,18 @@ esac
 
 alias ilbullblood='i3lock -c 730800'
 alias il='i3lock -i ~/afs/images/GF3.PNG'
-alias slrn='slrn -f /home/depott_g/.jnewsrc --create'
+alias slrn='slrn -f /home/jojo/.jnewsrc --create'
 alias mygz='tar -zcvf'
 alias myungz='tar xf'
 alias myuntar='tar -xvf'
 alias sou='source ~/.bashrc'
 alias mygcc='gcc -Wextra -Wall -Werror -std=c99 -pedantic -g'
-alias gccdb='~/commands/gccdb.sh'
-alias mywc='~/commands/mywc.sh'
+alias gccdb='~/jojo/commands/gccdb.sh'
+alias mywc='~/jojo/commands/mywc.sh'
 alias inst='sudo apt-get install'
 alias remake="make clean; make"
 
-alias ski='~/commands/ski'
+alias ski='~/jojo/commands/ski'
 alias ghost='echo Nice pun!'
 alias quiche='echo; echo; echo ODILE_G !!!; echo; echo'
 alias 3615='firefox'
@@ -75,16 +75,18 @@ alias sl2='while [ 1 ]; do sl -al; done'
 alias lsd='sl'
 alias lds='sl'
 
-alias mkaut='~/commands/mkaut.sh'
-alias mktest='~/commands/mktest.sh'
-alias mkfile='~/commands/mkfile.sh'
-alias vimc='~/commands/vimc.sh'
-alias check='~/commands/check.sh'
+alias mkaut='~/jojo/commands/mkaut.sh'
+alias mktest='~/jojo/commands/mktest.sh'
+alias mkfile='~/jojo/commands/mkfile.sh'
+alias vimc='~/jojo/commands/vimc.sh'
+alias check='~/jojo/commands/check.sh'
 
-alias conftp='cd ~/commands'
+alias conftp='cd ~/jojo/commands'
 
 alias corbtp='cd ~/corb'
-alias corb='~/commands/corb.sh'
+alias corb='~/jojo/commands/corb.sh'
+
+alias compcom='git add -A; git commit -m'
 
 export EDITOR=vim
 

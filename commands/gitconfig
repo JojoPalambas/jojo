@@ -16,6 +16,9 @@
 	autosetuprebase = always
 [push]
 	default = simple
+[alias]
+    logdec = log --decorate --graph --all
+    sl = shortlog -s
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.office365.com

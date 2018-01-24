@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo "vim ~/commands/$1"
-vim ~/commands/$1
+echo "vim ~/jojo/commands/$1"
+vim ~/jojo/commands/$1
