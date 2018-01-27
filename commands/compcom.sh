@@ -13,12 +13,12 @@ while [ $ans != 'y' ]; do
     read files
     echo -n "Commit message: "
     read comm
-    message="\"[$action][$target] $files - $comm\""
+    message="[$action][$target] $files - $comm"
 
     echo
     echo "Your command will be:"
     echo "$ git add -A"
-    echo "$ git commit -m $message"
+    echo "$ git commit -m \"$message\""
     echo
     echo -n "Are you sure you want this commit? (y/n) "
     read ans
