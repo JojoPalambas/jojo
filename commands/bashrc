@@ -62,6 +62,7 @@ alias myungz='tar xf'
 alias myuntar='tar -xvf'
 alias sou='source ~/.bashrc'
 alias mygcc='gcc -Wextra -Wall -Werror -std=c99 -pedantic -g'
+alias myg++='g++ -Wextra -Wall -Werror -std=c++17 -pedantic -g'
 alias gccdb='~/jojo/commands/gccdb.sh'
 alias mywc='~/jojo/commands/mywc.sh'
 alias inst='sudo apt-get install'
@@ -81,12 +82,14 @@ alias mkfile='~/jojo/commands/mkfile.sh'
 alias vimc='~/jojo/commands/vimc.sh'
 alias check='~/jojo/commands/check.sh'
 
+alias mk='~/jojo/commands/mk.sh'
+
 alias conftp='cd ~/jojo/commands'
 
 alias corbtp='cd ~/corb'
 alias corb='~/jojo/commands/corb.sh'
 
-alias compcom='git add -A; git commit -m'
+alias compcom='~/jojo/commands/compcom.sh'
 
 export EDITOR=vim
 

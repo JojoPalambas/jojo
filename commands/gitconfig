@@ -17,7 +17,7 @@
 [push]
 	default = simple
 [alias]
-    logdec = log --decorate --graph --all
+    logdec = log --decorate --graph --all --oneline
     sl = shortlog -s
 [sendemail]
 	smtpencryption = tls

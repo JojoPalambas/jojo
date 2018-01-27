@@ -1,15 +1,7 @@
 #/bin/sh
 
-# cd recover
-
-if [ $# -lt 1 ]; then
-	echo 'Error: 1 argument or more expected' >&2
-	exit 1
-fi
-
-if [ $1 = '-cd' ]; then
-	PWD=/home/depott_g/afs/corb
-	exit 0
+if [ $# = 0 ]; then
+    exit 0
 fi
 
 verbose=1
