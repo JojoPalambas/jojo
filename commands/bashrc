@@ -90,6 +90,7 @@ alias corbtp='cd ~/corb'
 alias corb='~/jojo/commands/corb.sh'
 
 alias compcom='~/jojo/commands/compcom.sh'
+alias counterr='~/jojo/commands/counterr.sh'
 
 export EDITOR=vim
 
