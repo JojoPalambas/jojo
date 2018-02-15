@@ -91,6 +91,7 @@ alias corb='~/jojo/commands/corb.sh'
 
 alias compcom='~/jojo/commands/compcom.sh'
 alias counterr='~/jojo/commands/counterr.sh'
+alias countout='~/jojo/commands/counterr.sh'
 
 export EDITOR=vim
 
