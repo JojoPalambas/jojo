@@ -19,6 +19,7 @@
 [alias]
     logdec = log --decorate --graph --all --oneline
     sl = shortlog -s
+    lol = log --oneline -20
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.office365.com

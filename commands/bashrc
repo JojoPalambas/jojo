@@ -80,9 +80,13 @@ alias mkaut='~/jojo/commands/mkaut.sh'
 alias mktest='~/jojo/commands/mktest.sh'
 alias mkfile='~/jojo/commands/mkfile.sh'
 alias vimc='~/jojo/commands/vimc.sh'
+alias chmodc='~/jojo/commands/chmodc.sh'
 alias check='~/jojo/commands/check.sh'
 
 alias mk='~/jojo/commands/mk.sh'
+
+alias mktig='~/jojo/commands/mktig.sh'
+alias editig='~/jojo/commands/editig.sh'
 
 alias conftp='cd ~/jojo/commands'
 
