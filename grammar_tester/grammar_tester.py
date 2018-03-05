@@ -119,6 +119,80 @@ def subexpand_couple(grammar, couple, histogram, max_depth):
 
 """
 ===============================================================================
+=========================== FULL RULES CHECK ==================================
+===============================================================================
+"""
+
+global_todolist = []
+
+""" Returns the bool associated with the token in global_todolist """
+def tok_to_bool(token):
+    global todolist
+    for (b, tok) in global_todolist:
+        if token == tok:
+            return b
+    print("Token \"", token, "\" not found!", sep = "")
+    return False
+
+"""
+Expands the current token by making sure that all the rules are used at least
+once
+To do this:
+    - If the global todolist is empty, it is built using the grammar as
+      follows: [(True, "exp"), (True, "op"), (True, "value")]
+    - If the current token is marked with True, it is marked as False, all
+      its rules are expanded and added to the result list
+    - Else, the rule is chosen in the fastpass list
+
+BE CAREFUL:
+    This function can be a RAM bomb if not enough rules are terminal.
+    The best use is to give to every token at least one terminal, like an
+    example of what the expansion of the token can generate.
+"""
+
+def expand_all_rules(grammar, token):
+    global global_todolist
+    if not global_todolist:
+        # Builds the global todolist
+        global_todolist = []
+        for (tok, tmp) in grammar:
+            global_todolist.append((True, tok))
+    # Gets the rules of the current token
+    rules = get_rules(grammar, token)
+    ret = []
+    # If the current token is marked as true
+    if tok_to_bool(token):
+        # Marks the current token as True
+        for i in range(len(global_todolist)):
+            if global_todolist[i][1] == token:
+                global_todolist[i] = (False, global_todolist[i][1])
+        # Expands all the rules
+        for rule in rules:
+            ret += subexpand_rule_all_rules(grammar, rule)
+    else:
+        # Chooses a (if possible) terminal rule and expands it
+        rule = choose_rule(rules, 3, 2)
+        ret = subexpand_rule_all_rules(grammar, rule)
+    return ret
+    
+""" Same as subexpand_rule but with different arguments """
+def subexpand_rule_all_rules(grammar, rule):
+    ret = []
+    for word in rule:
+        sub = subexpand_couple_all_rules(grammar, word)
+        if not sub:
+            return None
+        ret = merge_list(ret, sub)
+    return ret
+
+""" Same as subexpand_couple but with different arguments """
+def subexpand_couple_all_rules(grammar, couple):
+    if not couple[0]:
+        return [couple[1]]
+    return expand_all_rules(grammar, couple[1])
+
+"""
+===============================================================================
 ========================= RANDOM GRAMMAR CHECK ================================
 ===============================================================================
 """
@@ -142,7 +216,6 @@ def choose_rule(rules, depth, max_depth):
             term.append(rule)
         else:
             nterm.append(rule)
-    # If there is only non-terminal rules
     if depth <= max_depth and nterm:
         return nterm[pick_index(len(nterm))]
     if depth > max_depth and term:
@@ -172,7 +245,8 @@ def random_expand(grammar, token, depth = 0, max_depth = 5):
 """
 
 expr = [("exp", [[(True, "exp"), (True, "op"), (True, "exp")],
-                 [(True, "value")]]),
+                 [(False, "3")],
+                 [(False, "("), (True, "exp"), (False, ")")]]),
         ("op", [[(False, "+")],
                 [(False, "-")],
                 [(False, "*")],
@@ -181,7 +255,8 @@ expr = [("exp", [[(True, "exp"), (True, "op"), (True, "exp")],
         ("value", [[(False, "3")]])]
 
 tiger = [("program", [[(True, "exp")],
-                     [(True, "decs")]]),
+                     [(True, "decs")],
+                     [(False, "5")]]),
          ("exp", [[(False, "nil")],
                   [(False, "5")],
                   [(False, "\"totor\"")],
@@ -207,34 +282,41 @@ tiger = [("program", [[(True, "exp")],
                   [(False, "break")],
                   [(False, "let "), (True, "decs"), (False, " in "), (True, "exps"), (False, " end")],
                   [(False, "let "), (True, "decs"), (False, " in end")]]),
-         ("lvalue", [[(True, "id")],
+         ("lvalue", [[(False, "x")],
                      [(True, "lvalue"), (False, "."), (True, "id")],
                      [(True, "lvalue"), (False, "["), (True, "exp"), (False, "]")]]),
          ("exps", [[(True, "exp")],
+                   [(False, "5")],
                    [(True, "exp"), (False, " ; "), (True, "exps")]]),
          ("decs", [[(False, "")],
                    [(True, "decs2")]]),
          ("decs2", [[(True, "dec")],
+                    [(False, "var x := 5")],
                     [(True, "dec"), (False, " "), (True, "decs2")]]),
          ("dec", [[(False, "type "), (True, "id"), (False, " = "), (True, "ty")],
                   [(False, "class "), (True, "id"), (False, " extends "), (True, "type-id"), (False, " {"), (True, "classfields"), (False, "} ")],
                   [(False, "class "), (True, "id"), (False, " {"), (True, "classfields"), (False, "} ")],
                   [(True, "vardec")],
+                  [(False, "var x := 5")],
                   [(False, "function "), (True, "id"), (False, "("), (True, "tyfields"), (False, ") : "), (True, "type-id"), (False, " = "), (True, "exp")],
                   [(False, "function "), (True, "id"), (False, "("), (True, "tyfields"), (False, ") = "), (True, "exp")],
                   [(False, "function "), (True, "id"), (False, "("), (True, "tyfields"), (False, ") : "), (True, "type-id")],
                   [(False, "function "), (True, "id"), (False, "("), (True, "tyfields"), (False, ")")],
                   [(False, "import \"totor\"")]]),
          ("vardec", [[(False, "var "), (True, "id"), (False, " := "), (True, "exp")],
+                     [(False, "var x := 5")],
                      [(False, "var "), (True, "id"), (False, " : "), (True, "type-id"), (False, " := "), (True, "exp")]]),
          ("classfields", [[(False, "")],
                           [(True, "classfields2")]]),
          ("classfields2", [[(True, "classfield")],
+                           [(False, "var x := 5")],
                            [(True, "classfield"), (False, " "), (True, "classfields2")]]),
          ("classfield", [[(True, "vardec")],
+                         [(False, "var x := 5")],
                          [(False, "method "), (True, "id"), (False, "("), (True, "tyfields"), (False, ") : "), (True, "type-id"), (False, " = "), (True, "exp")],
                          [(False, "method "), (True, "id"), (False, "("), (True, "tyfields"), (False, ") = "), (True, "exp")]]),
-         ("ty", [[(True, "type-id")],
+         ("ty", [[(False, "int")],
+                 [(True, "type-id")],
                  [(False, "{"), (True, "tyfields"), (False, "}")],
                  [(False, "array of "), (True, "type-id")],
                  [(False, "class extends "), (True, "type-id"), (False, "{"), (True, "classfields"), (False, "}")],
@@ -242,6 +324,7 @@ tiger = [("program", [[(True, "exp")],
          ("tyfields", [[(False, "")],
                        [(True, "tyfields2")]]),
          ("tyfields2", [[(True, "id"), (False, " : "), (True, "type-id")],
+                        [(False, "x : int")],
                         [(True, "id"), (False, " : "), (True, "type-id"), (False, ", "), (True, "tyfields2")]]),
          ("type-id", [[(False, "int")]]),
          ("id", [[(False, "x")]]),
@@ -265,6 +348,10 @@ out_list(res)
 print(len(res))
 """
 
+res = expand_all_rules(tiger, "program")
+out_list(res)
+print(len(res))
+print(time.time() - start)
+
 for i in range(10000):
     print(random_expand(tiger, "program"))
-print(time.time() - start)
