@@ -1,0 +1,87 @@
+[ ] Not done yet
+[-] Being done
+[+] Done but not debugged yet
+[X] Done
+[ ] ? Facultative task
+
+[-] Makefile
+
+[X]
+
+[+] BigNum basics
+    [X] Class
+    [X] Constructor
+    [+] Destructor
+    [+] clone
+    [X] get_num_Digits
+    [X] get_digit
+    [X] set_digit
+    [X] is_positive
+    [X] set_positive
+    [+] >
+    [+] ==
+    [+] ()
+
+[+] Base
+    [X] Class
+    [X] Constructor
+    [+] Destructor
+    [X] get_base_num
+    [+] add_digit
+    [+] is_digit
+    [+] is_operator
+    [X] get_digit_representation
+    [X] get_char_value
+
+[ ] Addition
+    [ ] +
+    [ ] +=
+
+[ ] Multiplication
+    [ ] *
+    [ ] *=
+
+[ ] AST & ASTFactory
+    [ ] ASTNode
+        [ ] Class
+        [ ] Constructor
+        [ ] Destructor
+        [ ] print_infix
+        [ ] ? print_pol
+        [ ] ? print_rpol
+        [ ] eval
+    [ ] ASTFactory
+        [ ] Class
+        [ ] Constructor
+        [ ] Destructor
+        [ ] () 0 arg
+        [ ] () 1 arg
+        [ ] () 2 args
+
+[ ] Executable
+
+[ ] Substraction
+    [ ] -
+    [ ] -=
+
+[ ] Division
+    [ ] /
+    [ ] /=
+
+[ ] Modulo
+    [ ] %
+    [ ] %=
+
+[ ] Polish notation (-> "AST & ASTFactory" -> "ASTNode")
+    [ ] print_pol
+    [ ] print_rpol
+
+[ ] Higher bases
+
+[ ] Exponentiation
+
+[ ] Square root
+
+[ ] Logarithm
+
+[ ] Improved performances

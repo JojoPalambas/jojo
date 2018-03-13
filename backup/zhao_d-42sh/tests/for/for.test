@@ -1,0 +1,8 @@
+for i in totor ; do echo non ; done
+for for in for in for ; do echo for ; done
+for i in for; echo i love 42sh; done
+for i in tortu; do echo I love turtles ; done
+for banane in b a n a n i e r ; do echo Do YoU Like TorTulEs ??? ; done
+for error in 42sh ; echo non ; done
+for in in in in in in; do echo totor; done
+for i in 1 2 3; do for j in 2 3 4; do echo tutu; done; echo totor; done

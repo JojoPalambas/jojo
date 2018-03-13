@@ -1,0 +1,5 @@
+let
+    var s : string := "My variable printed"
+in
+    print(s) ; print("\n")
+end

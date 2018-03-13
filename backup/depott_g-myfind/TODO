@@ -1,0 +1,22 @@
+I still have to do:
+
+        Threshold 0: nothing
+
+        Threshold 1:
+            - debug "myfind -H tests tests/test_dir/dir2/lk"
+
+        Threshold 2: nothing
+
+        Threshold 3:
+            - -print function
+
+        Threshold 4: everything
+
+        Threshold 5: everything
+
+        Threshold 6: everything
+
+        Threshold 7: everything
+
+        Miscellaneous:
+            - factorize the three findall functions

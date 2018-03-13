@@ -1,0 +1,7 @@
+if echo totor; then echo tata; fi
+if echo totor; then echo tata; else echo tutu; fi
+if !echo totor; then echo tata; else echo tutu; fi
+if !echo totor; then echo tata; elif echo tutu; then echo titi; else echo tete; fi
+if echo totor; if echo tata; then echo tutu; fi; then echo tete; fi
+if if echo totor; then echo tata; fi; then echo tutu; fi
+

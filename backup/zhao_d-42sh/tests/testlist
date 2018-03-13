@@ -1,0 +1,15 @@
+echo 1
+echo 1 + 1
+echo toto
+echo tata
+tree
+tree .
+tree ..
+tree src
+ls
+ls lexer
+ls prompt
+ls ..
+if test 1 -lt 6; then echo 1; else echo 0 ;fi
+llllll
+mkdir toto; ls ;rmdir toto; ls

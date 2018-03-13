@@ -1,0 +1,27 @@
+[ ] Still has to be done
+[-] Has to be finished
+[+] Is finished but maybe has to be debugged
+[X] Is already done
+
+    [ ] Exercise 1: Int container
+
+    [+] Exercise 2: Robots
+        [+] Robot
+        [+] RobotFighter
+        [+] ArmoredRobot
+        [+] RocketRobot
+        [+] RobotAgency
+
+    [ ] Exercise 3: School
+        [ ] Person
+        [ ] Teacher
+        [ ] Student
+        [ ] School
+
+    [ ] Exercise 4: Operations
+        [ ] Operation
+        [ ] SetOperation
+        [ ] NegateOperation
+        [ ] ErrorOperation
+        [ ] Constructor
+        [ ] Processor

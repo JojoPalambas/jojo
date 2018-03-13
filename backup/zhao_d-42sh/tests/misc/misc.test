@@ -1,0 +1,5 @@
+totor
+totor echo
+echo totor
+totor
+if [ 1 -lt 3 ]; then for i in 1 2 3 4 5; do echo beginning; if [ 3 -lt 1 ]; then echo lower; else echo bigger; fi; echo end; done; else echo nothing; fi

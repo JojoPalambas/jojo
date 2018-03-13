@@ -1,0 +1,82 @@
+In order to get efficient queries, my project is splitted into 11 tables.
+
+    CUSTOMER
+
+        - Contains all the information about the customers.
+        - A customer is identified by his email address.
+
+    ARTIST
+
+        - Contains all the information about the customers.
+        - An artist is identified by his name.
+
+    SONG
+
+        - Contains all the information about the songs.
+        - A song is identifed by its id, an auto-increment value.
+        - The couple (name, artist_name) is unique because an artist cannot
+          write twice the same song.
+        - The duration cannot be negative but it can be null.
+        - The artist_name is a foreign key to the name of an artist (obviously)
+
+    ALBUM
+
+        - Contains only the name of the album (therefore, the only use of
+          this table is to have a fast way to get the list of the albums,
+          including empty ones).
+        - An album is identified by its name.
+
+    STOCK
+
+        - Contains all the information about the stock.
+        - A cell contains the name of an album and the quantity of it in
+          the stock.
+        - A cell is identified by the name of its album, which is a foreign key
+          to the name of an album.
+        - The quantity of albums in a cell must be strictly superior to 0.
+
+    ALBUM_SONG
+
+        - Makes the link between albums and songs.
+        - Each cell links one album to one song, associating it to a track
+          number.
+        - Each cell is identified by the couple (album_name, track).
+        - The album_name and song_id are obviously foreign keys to respectively
+          the name of an album and the id of a song.
+
+    RENT
+
+        - Contains all the information about the current rents.
+        - A rent is identified by its id.
+        - It contains two foreign keys, customer_email to the email address
+          of a customer and album_name to the name of an album. The couple
+          between them is unique.
+
+    RENT_HISTORY
+
+        - Contains all the information about all the rents, including the
+          past ones.
+        - A rent is identified by its id.
+        - It contains two foreign keys, customer_email to the email address
+          of a customer and album_name to the name of an album.
+
+    DELIVERY
+
+        - Contains all the data that the trigger track_delivery needs to store.
+        - A delivery is identified by its id and contains an album_name,
+          an amount and a date of delivery.
+        - The album_name is a foreign key to the name of an album.
+
+    RENTED_ARTIST
+
+        - Contains all the data that the trigger track_rented_artists
+          needs to store.
+        - A rented artist is identified by its id and it contains an artist_name
+          (which is a foreign key to the name of an artist) and a rent date.
+
+    ARTIST_RELEASE
+
+        - Contains all the data that the trigger track_artists_releases needs
+          to store.
+        - A release is identified by an id and contains an artist_name
+          (which is a foreign key to the name of an artist) and a release_date.

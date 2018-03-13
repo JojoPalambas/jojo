@@ -1,0 +1,25 @@
+[ ] To do
+[-] Being done
+[+] Done but not debugged
+[X] Done
+If a '?' is added after [ ], [-], [+] or [X], it means that the task
+is optional.
+
+[X] Warm-up
+    [X] Hello Tigrou
+    [X] Let me do it
+    [X] How old I am
+    [X] Declare my variable
+    [X] Fibo
+    [X] Use an array
+
+[-] Logomatig
+    [X] Level 1
+        [X] Lexer
+        [X] Parser
+        [X] Forward
+        [X] Left
+        [X] Right
+    [X] Level 1.5
+    [ ] Level 2
+    [-] ? Additional features

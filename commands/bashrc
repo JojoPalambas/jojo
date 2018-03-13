@@ -97,6 +97,8 @@ alias compcom='~/jojo/commands/compcom.sh'
 alias counterr='~/jojo/commands/counterr.sh'
 alias countout='~/jojo/commands/counterr.sh'
 
+alias massclone='~/jojo/commands/massclone.sh'
+
 export EDITOR=vim
 
 alias ls='ls --color=auto'

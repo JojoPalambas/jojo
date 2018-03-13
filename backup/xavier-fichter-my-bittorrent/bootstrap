@@ -1,0 +1,3 @@
+autoreconf --install
+./configure CFLAGS="-ggdb3 -O0" CXXFLAGS="-ggdb3 -O0" LDFLAGS="-ggdb3"
+make

@@ -1,0 +1,72 @@
+    In this TODO file, things that have been done will start with ':' and the
+things to do will start with '-'.
+
+ *  malloc:
+     -- malloc will have two different behaviors depending on the size wanted by
+        the user.
+     -- For all the allocations which sizes are inferior to one page, the
+        memory will be subdivised as a binary tree.
+     -- If no memory space has been mapped yet, a page is mapped.
+     -- While the size of the current block does not match with the size needed
+        and is superior to 16, the current block is subdivised in two equal
+        blocks.
+     -- Then, the current block is marked as used and returned to the user.
+     -- If at least one page has been mapped yet, the program traverses the data
+        block as a tree, subdivising blocks if needed as seen before, and
+        returns the appropriate data block.
+     -- If no data block was found, a new page is mapped and the same program is
+        executed on it.
+     -- If the size of the allocation is superior or equal to one page, the
+        program creates as many pages as needed and marks the wholes pages as
+        used.
+     -- To locate data blocks and manage metadata, there will be a global
+        variable corresponding to the position of the page containing the
+        pointers to all the data pages and eight bytes of metadata at the
+        beginning of every data block.
+     -- The eight metadata bytes will be different regarding their position (if
+        they are at the beginning of a block smaller than one page or if they
+        are at the beginning of a block smaller than one page):
+        * for the data blocks smaller than one page:
+            0       u       e       l       73      112     15      97
+        * for the data blocks bigger than one page:
+            1       u       s       s       s       s       15      97
+     -- The first byte is used to know the type of the data block: 0 for small
+        data blocks, 255 for big data blocks.
+     -- The "u" byte will have the value 1 if the data block is used and 0 if
+        not.
+     -- The "e" byte, for the smaller blocks, will be the power of 2
+        corresponding to the size of the data block.
+     -- The "l" byte, for the smaller blocks, will get the value 1 if it is a
+        left buddy and 0 if it is a right buddy.
+     -- The "s" bytes, for the bigger blocks, will be an int32_t corresponding
+        to the number of pages needed to store the data block.
+     -- All the other numerical values will always have the same value and are
+        there to check whether the metadata is corrupted because the probability
+        that the user overrides the metadata with the exact same values is
+        almost null.
+
+ *  calloc:
+     -- calloc will compute the product of the two arguments, use malloc with
+        the result and set the whole data block to 0.
+
+ *  realloc:
+      - For now, realloc will only allocate, copy memory and free the former
+        memory space.
+
+ *  free:
+      - First, free will take the pointer given as argument and substract 8 to
+        it in order to get the metadata of the current data block.
+      - If the data block is a big data block, the program will unmap as many
+        pages as needed to store this size of data.
+      - If the data block is a small data block, the block is marked as free.
+      - Then, a merging function is called on the current block.
+      - First, the merging function will check if the given location is in a
+        page. Else, it returns.
+      - Then, the merging function will check is the size of the current block
+        is the size of a page and if it is free. If it is the case, the current
+        page is unmapped.
+      - Then it will check the block on the left to know if it is mergeable with
+        the current block (i.e. if its size is the same and if it is free). If
+        it is the case, the two blocks are merged and the merging function is
+        recursively called on the merged block.
+      - Last, the merging function is called on the block on the right.

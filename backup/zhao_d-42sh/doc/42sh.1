@@ -1,0 +1,62 @@
+.TH 42sh 1
+.SH NAME
+42sh \- basic shell created for EPITA
+.SH SYNOPSIS
+.B 42sh
+[\fIGNU long options\fR]
+[\fIoptions\fR]
+[\fIfile\fR]
+.SH DESCRIPTION
+.B 42sh
+is a shell able to execute commands. It can have options before. The commands are written respecting the SCL.
+.br
+A commandline can be given using the -c option, else executing the program will automatically open an interactive mode.
+
+.SH OPTIONS
+.TP
+.BR \-c
+follow the bash behavior for this option. The commands are read from the first non option command string.
+.TP
+.BR [+\-]O " " [shopt_option]
+follow the bash behavior for this option. -O sets the value of that option; +O unsets it. If shopt_option is not supplied, the names and values of the shell options accepted by shopt are printed on the standard output.
+.TP
+.BR [\-\-norc]
+this option deactivates the ressource reader. Does not execute the .42shrc
+.TP
+.BR [\-\-ast\-print]
+this option activates the AST printer
+.TP
+.BR [\-\-version]
+this option prints the current 42sh version on the standard output and exits
+
+.SH BEHAVIOR
+  Using the program with a pipe will not display what is inputed. So neither the PS1 nor the PS2 will be displayed.
+.br
+
+  If any error occures during the writing on interactive mode, an error will be  displayed and will return to PS1 prompt.
+
+.SH BUILTINS
+.TP
+.BR echo " "[\-n]
+  print the arguments on the standard output with a newline at the end. \-n removes the newline
+.TP
+.BR exit
+  exits the prompt
+
+
+.SH AUTHORS
+.LP
+ZHAO Dylan (zhao_d),
+.br
+zhao_d@epita.fr
+.LP
+DEPOTTE Gabriel (depott_g),
+.br
+depott_g@epita.fr
+.LP
+TRINH Vincent (trinh_v),
+.br
+trinh_v@epita.fr
+
+.SH REMARKS
+This is the last release of zhao_d group's 42sh. No more maintainance will be done. If you found any, please do not contact \fIANY\fR of us. We will be happy not to answer you about it. This project was very long and interesting. Now we all now know the answer The Ultimate Question of Life, the Universe and Everything: it is coding a shell from scratch.

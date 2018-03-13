@@ -1,0 +1,21 @@
+[ ] Still has to be done
+[-] Has to be finished
+[+] Is finished but has to be debugged
+[X] Is already done
+
+    [X] Exercise 1: Computer's shop
+        [X] The Shop Class
+            [X] Class
+            [X] Constructor & Destructor
+            [X] Member functions
+        [X] The Computer Class
+            [X] Constructor & Destructor
+            [X] Operator << overload
+            [X] Comparison operators
+
+    [ ] Exercise 2: BST
+        [ ] Constructor & Destructor
+        [ ] Find
+        [ ] Insert
+        [ ] Print
+        [ ] Remove

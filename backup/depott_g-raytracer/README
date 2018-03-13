@@ -1,0 +1,8 @@
+You are advised to use this program in three steps:
+    * Type 'make' to compile it
+    * Type './rt [input] [output]' to execute it
+        - [input] should be replaced by the name of the .svati file you want
+          to use to generate your .ppm file
+        - [output] should be replaced by the name you want to give to your file
+    * Type 'make clean' to clean the directory from the .o files and the
+      binary file.

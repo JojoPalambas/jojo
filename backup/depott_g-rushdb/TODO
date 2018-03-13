@@ -1,0 +1,68 @@
+[ ] Still has to be done
+[-] Being done
+[X] Already done
+
+[X] Threshold 0
+    [X] Base tables
+        [X] Customer
+        [X] Artist
+        [X] Song
+        [X] Album
+        [X] Stock
+    [X] Link tables
+        [X] Album_song
+    [X] History tables
+        [X] Rent_history
+        [X] Delivery
+        [X] Rented_artist
+        [X] Artist_release
+
+[X] Threshold 1
+    [X] Tools
+        [X] Duration_to_string
+    [X] Adding functions
+        [X] Add_artist
+        [X] Add_album
+        [X] Add_song_to_album
+        [X] Add_song
+    [X] Views
+        [X] View_artists
+        [X] View_albums
+        [X] View_songs
+
+[X] Threshold 2
+    [X] Adding_functions
+        [X] Add_customer
+        [X] Add_stock
+        [X] Rent_album
+        [X] Return_album
+    [X] Views
+        [X] View_customers
+        [X] View_rents
+        [X] View_stocks
+
+[X] Threshold 3
+    [X] Functions
+        [X] Get_current_rents
+        [X] Album_contents
+        [X] Generate_bills
+        [X] Generate_bills_new
+    [X] View
+        [X] View_customer_favorites
+
+[X] Threshold 4
+    [X] Triggers
+        [X] Track deliveries
+        [X] Track rented artists
+        [X] Track artists releases
+    [X] Views
+        [X] View_deliveries
+        [X] View_rented_artists
+        [X] View_top_five
+        [X] View_released_songs
+
+[X] Conclusion
+    [X] More tests
+    [X] Check all outputs, column names and ORDER BY
+    [X] Write comments and clean the code
+    [X] Finish README

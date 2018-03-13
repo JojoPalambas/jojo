@@ -1,0 +1,118 @@
+type str_arr = array of string
+type str_vect = { strings : str_arr, nb_strings : int }
+
+function get_input() : string =
+    let
+        var cur : string := ""
+        var program : string := ""
+    in
+        cur := getchar();
+        while not(cur = "") do
+        (
+            program := concat(program, cur);
+            cur := getchar()
+        );
+        program
+    end
+
+function cfs(s : string, n : int) : string =
+    substring(s, n, 1)
+
+function count_words(input : string) : int =
+    let
+        var count : int := 0
+        var is_word : int := 0
+        var cur_char : string := ""
+    in
+        for i := 0 to size(input) - 1 do
+        (
+            cur_char := cfs(input, i);
+            if (streq(cur_char, "[")
+              | streq(cur_char, "]")) then
+            (
+                count := count + 1;
+                if (is_word) then
+                    count := count + 1;
+                is_word := 0
+            )
+            else
+            (
+                if (streq(cur_char, " ")
+                  | streq(cur_char, "\n")
+                  | streq(cur_char, "\t")
+                  | streq(cur_char, ";")) then
+                (
+                    if (is_word) then
+                    (
+                        count := count + 1;
+                        is_word := 0
+                    )
+                )
+                else
+                (
+                    is_word := 1
+                )
+            )
+        );
+        if (is_word) then
+            count := count + 1;
+        count
+    end
+
+function lex_input() : str_vect =
+    let
+        var input : string := get_input()
+        var nb_words : int := count_words(input)
+        var words : str_arr := str_arr[nb_words] of ""
+        var cur_word : string := ""
+        var cur_word_index : int := 0
+        var cur_char : string := ""
+        var ret : str_vect := str_vect { strings = words, nb_strings = nb_words }
+    in
+        for i := 0 to size(input) - 1 do
+        (
+            cur_char := cfs(input, i);
+            if (streq(cur_char, "[")
+              | streq(cur_char, "]")) then
+            (
+                if (not(streq(cur_word, ""))) then
+                (
+                    words[cur_word_index] := cur_word;
+                    cur_word_index := cur_word_index + 1;
+                    cur_word := ""
+                );
+                words[cur_word_index] := cur_char;
+                cur_word_index := cur_word_index + 1;
+                ()
+            )
+            else
+            (
+                if (streq(cur_char, " ")
+                  | streq(cur_char, "\n")
+                  | streq(cur_char, "\t")
+                  | streq(cur_char, ";")) then
+                (
+                    if (not(streq(cur_word, ""))) then
+                    (
+                        words[cur_word_index] := cur_word;
+                        cur_word_index := cur_word_index + 1;
+                        cur_word := ""
+                    );
+                    ()
+                )
+                else
+                (
+                    cur_word := concat(cur_word, cur_char);
+                    ()
+                );
+                ()
+            );
+            ()
+        );
+        if (not(streq(cur_word, ""))) then
+        (
+            words[cur_word_index] := cur_word
+        );
+        ret := str_vect { strings = words, nb_strings = nb_words };
+        ret
+    end
