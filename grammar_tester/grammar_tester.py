@@ -352,6 +352,3 @@ res = expand_all_rules(tiger, "program")
 out_list(res)
 print(len(res))
 print(time.time() - start)
-
-for i in range(10000):
-    print(random_expand(tiger, "program"))
