@@ -1,1 +1,0 @@
-s/Google/Yahoo/g

@@ -1,5 +1,0 @@
-let
-    var s : string := "Hi Tigrou!\n"
-in
-    print(s)
-end

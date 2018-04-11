@@ -1,6 +1,0 @@
-I have finished and debugged exercise 1. Everything seems to work, there is no
-known error. I haven't had big difficulties.
-
-I have finished exercise 2 but I had to remove the "delete" from my Destructor:
-for unknown reasons, this line caused segfaults. I searched a lot but didn't
-find the answer. As I prefer a memory leak to a segfault, I removed this line.
