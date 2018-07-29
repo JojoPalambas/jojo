@@ -6,7 +6,7 @@ fi
 
 verbose=1
 remove=1
-corb=~/corb/
+corb=~/corb
 
 for file in $*; do
 	if [ $file = '-v' ]; then
@@ -17,10 +17,10 @@ for file in $*; do
 
 	elif [ $file = '-cl' ]; then
         for corb_file in $corb*; do
-            if [ $verbose -eq 1 ]; then
-                echo "rm -rf $corb_file"
-            fi
             rm -rf $corb_file
+            if [ $verbose -eq 1 ]; then
+                echo "Permanently recycled $corb/$corb_file"
+            fi
         done
 		if [ $verbose -eq 1 ]; then
 			echo "The corb has been cleaned."
@@ -56,15 +56,18 @@ for file in $*; do
       echo
       echo " ------ END ------"
 		fi
-
   else
     if [ $remove -eq 1 ]; then
 	    if [ ! -e $file ]; then
 		    if [ $verbose -eq 1 ]; then
 			    echo "Error: $file unknown" >&2
-	  	  fi
+	  	    fi
 
 	    else
+            if [ -e "$corb/$file" ]; then
+                rm -rf "$corb/$file"
+                echo "Permanently recycled $corb/$file"
+            fi
 		    mv -f $file $corb
 		    if [ $verbose -eq 1 ]; then
 			    echo "$file has been put in the corb."
