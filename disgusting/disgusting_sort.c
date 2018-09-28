@@ -13,43 +13,42 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-void function(int *var1, int var2)                                          {
-int *var3 = malloc(sizeof (int) * (var2 + 8));
-var3[0] = 0;
-for (var3[0] = 0; var3[0] < var2 + 8; var3[0]++)                            {
-if (var3[0] < 8)
+void function(int *var1, int var2)                                             {
+int *var3=malloc(sizeof(int)*(var2+8));
+var3[0]=0;
+for(var3[0]=0;var3[0]<var2+8;var3[0]++)                                        {
+if(var3[0]<8)
 continue;
-else if (var3[0] >= 8)
-var3[var3[0]] = var1[var3[0] - 8];                                          }
-var3[1] = -1;
-var3[2] = 0;
-for (var3[0] = 0; var3[0] < var2; var3[0]++)                                {
-var3[3] = 0;
-var3[4] = var3[0];
-var3[5] = 0;
-for (var3[5] = 0; var3[5] < var2; var3[5]++)                                {
-if (var3[3] >= var3[2])                                                     {
-if (var3[var3[5] + 8] < var3[var3[4] + 8])                                  {
-var3[4] = var3[5];                                                          }}
-else                                                                        {
-if (var3[var3[5] + 8] == var3[var3[1] + 8])
-var3[3]++;                                                                  }}
-var3[6] = var3[var3[0] + 8];
-var3[var3[0] + 8] = var3[var3[4] + 8];
-var3[var3[4] + 8] = var3[6];
-if (var3[1] == -1 || var3[var3[0] + 8] != var3[var3[1] + 8])                {
-var3[1] = var3[0];
-var3[2] = 1;                                                                }
-else                                                                        {
-var3[2] += 1;                                                               }}
-for (var3[0] = 0; var3[0] < var2 + 8; var3[0]++)                            {
-if (var3[0] < 8)
+else if(var3[0]>=8)
+var3[var3[0]]=var1[var3[0]-8];                                                 }
+var3[1]=-1;
+var3[2]=0;
+for(var3[0]=0;var3[0]<var2;var3[0]++)                                          {
+var3[3]=0;
+var3[4]=var3[0];
+var3[5]=0;
+for(var3[5]=0;var3[5]<var2;var3[5]++)                                          {
+if(var3[3]>=var3[2])                                                           {
+if(var3[var3[5]+8]<var3[var3[4]+8])                                            {
+var3[4]=var3[5];                                                              }}
+else                                                                           {
+if(var3[var3[5]+8]==var3[var3[1]+8])
+var3[3]++;                                                                    }}
+var3[6]=var3[var3[0]+8];
+var3[var3[0]+8]=var3[var3[4]+8];
+var3[var3[4]+8]=var3[6];
+if(var3[1]==-1||var3[var3[0]+8]!=var3[var3[1]+8])                              {
+var3[1]=var3[0];
+var3[2]=1;                                                                     }
+else                                                                           {
+var3[2]+=1;                                                                   }}
+for(var3[0]=0;var3[0]<var2+8;var3[0]++)                                        {
+if (var3[0]<8)
 continue;
-else if (var3[0] >= 8)
-var1[var3[0] - 8] = var3[var3[0]];                                          }}
+else if(var3[0]>=8)
+var1[var3[0]-8]=var3[var3[0]];                                                }}
 
 // else if instead of else
-// all variables in a larger copy of tab
 // useless comments in the middle of a line
 
 int main()
