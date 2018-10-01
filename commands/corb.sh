@@ -8,6 +8,10 @@ verbose=1
 remove=1
 corb=~/corb
 
+if [ ! -e $corb ]; then
+    mkdir $corb
+fi
+
 for file in $*; do
 	if [ $file = '-v' ]; then
 		verbose=1
@@ -16,10 +20,10 @@ for file in $*; do
 		verbose=0
 
 	elif [ $file = '-cl' ]; then
-        for corb_file in $corb*; do
+        for corb_file in $corb/*; do
             rm -rf $corb_file
             if [ $verbose -eq 1 ]; then
-                echo "Permanently recycled $corb/$corb_file"
+                echo "Permanently recycled $corb_file"
             fi
         done
 		if [ $verbose -eq 1 ]; then
