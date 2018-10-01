@@ -13,7 +13,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-void function(int *var1, int var2)                                             {
+void f(int *var1, int var2)                                             {
 int *var3=malloc(sizeof(int)*(var2+8));
 var3[0]=0;
 for(var3[0]=0;var3[0]<var2+8;var3[0]++)                                        {
@@ -62,7 +62,7 @@ int main()
         printf("%d", tab[i]);
     printf("\n");
 
-    function(tab, 10);
+    f(tab, 10);
 
     for (int i = 0; i < 10; i++)
         printf("%d", tab[i]);
