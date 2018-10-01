@@ -1,11 +1,14 @@
 program:                            inst_list
 
 inst_list:                          %empty
-                                  | scinst + inst_list
+                                  | inst + inst_list
 
-scinst:                             inst + ';'
+inst:                               no_sc_inst + sc
 
-inst:                               basic_inst
+sc:                                 ';'
+                                  | ';' + sc
+
+no_sc_inst:                         basic_inst
                                   | control_inst
                                   | assign
                                   | '{' + inst_list + '}'
@@ -13,65 +16,27 @@ inst:                               basic_inst
 control_inst:                       if_inst
                                   | switch_inst
                                   | while_inst
-                                  | do_while_inst
                                   | for_inst
 
-if_inst:                            'if' + '(' + inst + ')' + scinst
+if_inst:                            'if' + '(' + inst + ')' + inst
                                         + else_clause
 
 else_clause:                        %empty
-                                  | 'elif' + '(' + inst + ')' + scinst
+                                  | 'elif' + '(' + inst + ')' + inst
                                         + else_clause
                                   | 'else' + inst
 
+switch_inst:                        'switch' + '(' + inst + ')'
+                                        + '(' + case_list + ')'
 
+case_list:                          'default' + inst
+                                  | case_clause + case_list
 
+case_clause:                        'case' + '(' + inst + ')' + inst
 
+while_inst:                         'while' + '(' + inst + ')' + inst
 
-
-
-
-program:                            instruction_list
-
-instruction_list:                   instruction
-                                  | scinstruction + instruction_list
-
-scinstruction:                      instruction + ';'
-
-maybe_semi_columned_instruction:    scinstruction
-                                  | instruction
-
-emptiable_instruction:              %empty
-                                  | instruction
-
-instruction:                        control_structure_instruction
-                                  | assignment
-                                  | '{' + instruction_pack + '}'
-
-control_structure_instruction:      basic_instruction
-                                  | if_instruction
-                                  | switch_instruction
-                                  | while_instruction
-                                  | do_while_instruction
-                                  | for_instruction
-
-if_instruction:                     'if' + '(' + emptiable_instruction + ')'
-                                        + instruction + elif_clause
-
-elif_clause:                        %empty
-                                  | 'elif' + '(' emptiable_instruction + ')'
-                                        + elif_clause
-                                  | 'else' + instruction
-
-while_instruction:                  'while' + '(' + instruction + ')'
-                                        + instruction
-
-do_while
-
-
-
-
-
+for_inst:                           'for' + '(' + var + 'in' + inst + ')' + inst
 
 if (inst)
 if (inst; inst)
