@@ -1,0 +1,32 @@
+---
+name: Logos
+menu: Design
+---
+
+import { Container, Row, Col, Table } from 'reactstrap';
+
+import logo_color from './LOGO_COLOR.svg';
+import logo_full_color from './LOGO_FULL_COLOR.svg';
+import logo_white from './LOGO_WHITE.svg';
+import picto_color from './PICTO_COLOR.svg';
+import picto_white from './PICTO_WHITE.svg';
+
+# Logo
+
+Different versions of the logo of the project in SVG format.
+
+<Table striped><tbody><tr><th>
+  <Container className="primary">
+    <Row>
+      <Col xs="8"><img src={logo_full_color} /></Col>
+    </Row>
+    <Row>
+      <Col xs="2"><img src={picto_color} /></Col>
+      <Col xs="2"><img src={picto_white} /></Col>
+    </Row>
+    <Row>
+      <Col xs="6"><img src={logo_color} /></Col>
+      <Col xs="6"><img src={logo_white} /></Col>
+    </Row>
+  </Container>
+</th></tr></tbody></Table>
