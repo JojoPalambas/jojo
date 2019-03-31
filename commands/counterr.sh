@@ -18,15 +18,15 @@ echo "- Processing..."
 
 $1 1>.out 2>.err
 
-out_bytes=$(($out_bytes + $(cat .out | wc -c)))
-out_chars=$(($out_chars + $(cat .out | wc -m)))
-out_words=$(($out_words + $(cat .out | wc -w)))
-out_lines=$(($out_lines + $(cat .out | wc -l)))
+out_bytes=$(cat .out | wc -c)
+out_chars=$(cat .out | wc -m)
+out_words=$(cat .out | wc -w)
+out_lines=$(cat .out | wc -l)
 
-err_bytes=$(($err_bytes + $(cat .err | wc -c)))
-err_chars=$(($err_chars + $(cat .err | wc -m)))
-err_words=$(($err_words + $(cat .err | wc -w)))
-err_lines=$(($err_lines + $(cat .err | wc -l)))
+err_bytes=$(cat .err | wc -c)
+err_chars=$(cat .err | wc -m)
+err_words=$(cat .err | wc -w)
+err_lines=$(cat .err | wc -l)
 
 echo "- Finished!"
 
