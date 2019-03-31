@@ -68,6 +68,9 @@ alias mywc='~/jojo/commands/mywc.sh'
 alias inst='sudo apt-get install'
 alias remake="make clean; make"
 
+# Dangerous
+alias docker='sudo docker'
+
 alias ski='~/jojo/commands/ski'
 alias ghost='echo Nice pun!'
 alias quiche='echo; echo; echo ODILE_G !!!; echo; echo'
