@@ -68,9 +68,6 @@ alias mywc='~/jojo/commands/mywc.sh'
 alias inst='sudo apt-get install'
 alias remake="make clean; make"
 
-# Dangerous
-alias docker='sudo docker'
-
 alias ski='~/jojo/commands/ski'
 alias ghost='echo Nice pun!'
 alias quiche='echo; echo; echo ODILE_G !!!; echo; echo'
@@ -107,7 +104,11 @@ export EDITOR=vim
 alias ls='ls --color=auto'
 alias emacs='emacs -nw'
 
-PS1="\[\e[1;33m\][\A @ \W]\n\[\e[1;31m\]$\[\e[0;37m\] "
+if [ -f "$HOME/.machine_name" ]; then
+    export MACHINE_NAME=$(cat $HOME/.machine_name)
+fi
+
+PS1="\[\e[1;33m\][\A \u@$MACHINE_NAME > \w]\n\[\e[1;31m\]$\[\e[0;37m\] "
 #PS1='[\u@\h \W]\$ '
 
 LS_COLORS=$LS_COLORS:'di=36:'
