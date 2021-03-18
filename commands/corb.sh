@@ -59,11 +59,13 @@ for file in $*; do
       echo " -h:    help = shows this help (needs verbose)"
       echo
       echo " ------ END ------"
+      echo
 		fi
   else
-    if [ $remove -eq 1 ]; then
 
-      filename=$(basename $file)
+    filename=$(basename $file)
+
+    if [ $remove -eq 1 ]; then
 
 	    if [ ! -e $file ]; then
 		    if [ $verbose -eq 1 ]; then
@@ -73,11 +75,13 @@ for file in $*; do
 # The path here is incorrect: $file is a path, not nust a name of file (I think)
         if [ -e "$corb/$filename" ]; then
           rm -rf "$corb/$filename"
-          echo "Permanently recycled $corb/$filename"
+          if [$verbose -eq 1 ]; then
+            echo "X Permanently recycled $corb/$filename"
+          fi
         fi
         mv -f $file $corb
 		    if [ $verbose -eq 1 ]; then
-			    echo "$file has been put in the corb."
+			    echo "- $file has been put in the corb."
 		    fi
 	    fi
 
@@ -88,9 +92,9 @@ for file in $*; do
 	  	  fi
 
 	    else
-		    mv -f "$corb/$file" $PWD
+		    mv -f "$corb/$filename" $PWD
 		    if [ $verbose -eq 1 ]; then
-			    echo "$file has been restored from the corb."
+			    echo "+ $file has been restored from the corb."
 		    fi
 	    fi
     fi
