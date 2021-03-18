@@ -67,6 +67,7 @@ alias gccdb='~/jojo/commands/gccdb.sh'
 alias mywc='~/jojo/commands/mywc.sh'
 alias inst='sudo apt-get install'
 alias remake="make clean; make"
+alias la='ls -la'
 
 alias ski='~/jojo/commands/ski'
 alias ghost='echo Nice pun!'
@@ -79,6 +80,7 @@ alias lds='sl'
 alias mkaut='~/jojo/commands/mkaut.sh'
 alias mktest='~/jojo/commands/mktest.sh'
 alias mkfile='~/jojo/commands/mkfile.sh'
+alias mkansible='~/jojo/commands/mkansible.sh'
 alias vimc='~/jojo/commands/vimc.sh'
 alias chmodc='~/jojo/commands/chmodc.sh'
 alias check='~/jojo/commands/check.sh'
@@ -115,6 +117,8 @@ LS_COLORS=$LS_COLORS:'di=36:'
 export LS_COLORS
 
 ssh-add
+
+echo Private IP: $(hostname -I)
 
 PGDATA="$HOME/data/pgdata"
 export PGDATA="$HOME/postgres_data"

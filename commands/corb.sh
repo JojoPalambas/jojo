@@ -1,5 +1,7 @@
 #/bin/sh
 
+echo
+
 if [ $# = 0 ]; then
     exit 0
 fi
@@ -75,7 +77,7 @@ for file in $*; do
 # The path here is incorrect: $file is a path, not nust a name of file (I think)
         if [ -e "$corb/$filename" ]; then
           rm -rf "$corb/$filename"
-          if [$verbose -eq 1 ]; then
+          if [ $verbose -eq 1 ]; then
             echo "X Permanently recycled $corb/$filename"
           fi
         fi
