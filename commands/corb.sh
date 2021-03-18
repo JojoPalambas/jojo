@@ -62,17 +62,20 @@ for file in $*; do
 		fi
   else
     if [ $remove -eq 1 ]; then
+
+      filename=$(basename $file)
+
 	    if [ ! -e $file ]; then
 		    if [ $verbose -eq 1 ]; then
 			    echo "Error: $file unknown" >&2
-	  	    fi
-
+	  	  fi
 	    else
-            if [ -e "$corb/$file" ]; then
-                rm -rf "$corb/$file"
-                echo "Permanently recycled $corb/$file"
-            fi
-		    mv -f $file $corb
+# The path here is incorrect: $file is a path, not nust a name of file (I think)
+        if [ -e "$corb/$filename" ]; then
+          rm -rf "$corb/$filename"
+          echo "Permanently recycled $corb/$filename"
+        fi
+        mv -f $file $corb
 		    if [ $verbose -eq 1 ]; then
 			    echo "$file has been put in the corb."
 		    fi
