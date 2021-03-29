@@ -81,6 +81,7 @@ alias mkaut='~/jojo/commands/mkaut.sh'
 alias mktest='~/jojo/commands/mktest.sh'
 alias mkfile='~/jojo/commands/mkfile.sh'
 alias mkansible='~/jojo/commands/mkansible.sh'
+alias deploy-docker='~/jojo/commands/deploy-docker.sh'
 alias vimc='~/jojo/commands/vimc.sh'
 alias chmodc='~/jojo/commands/chmodc.sh'
 alias check='~/jojo/commands/check.sh'
@@ -107,7 +108,7 @@ alias ls='ls --color=auto'
 alias emacs='emacs -nw'
 
 if [ -f "$HOME/.machine_name" ]; then
-    export MACHINE_NAME=$(cat $HOME/.machine_name)
+    export MACHINE_NAME=$(cat $HOME/.machine_name | head -n 1)
 fi
 
 PS1="\[\e[1;33m\][\A \u@$MACHINE_NAME > \w]\n\[\e[1;31m\]$\[\e[0;37m\] "

@@ -67,3 +67,7 @@ echo "- name: $PLAYBOOK_NAME" >> "$BASE/$FOLDER/$PLAYBOOK"
 echo "  hosts:" >> "$BASE/$FOLDER/$PLAYBOOK"
 echo "  vars:" >> "$BASE/$FOLDER/$PLAYBOOK"
 echo "${OK} + FIL $BASE/$FOLDER/$PLAYBOOK created"
+
+echo
+tree "$BASE/$FOLDER"
+echo
